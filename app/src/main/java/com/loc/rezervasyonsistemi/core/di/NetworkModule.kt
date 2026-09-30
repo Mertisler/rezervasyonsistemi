@@ -1,5 +1,6 @@
 package com.loc.rezervasyonsistemi.core.di
 
+import com.loc.rezervasyonsistemi.data.api.EventApi
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -31,6 +32,10 @@ object NetworkModule {
             .build()
     }
 
-    // İlerleyen adımlarda EventApi oluşturulduğunda buraya eklenecektir:
-    // @Provides @Singleton fun provideEventApi(retrofit: Retrofit): EventApi = ...
+    @Provides
+    @Singleton
+    fun provideEventApi(retrofit: Retrofit): EventApi {
+        // Mevcut retrofit nesnesini kullanarak EventApi implementasyonunu oluşturur
+        return retrofit.create(EventApi::class.java)
+    }
 }

@@ -2,6 +2,7 @@ package com.loc.rezervasyonsistemi.core.di
 
 import android.content.Context
 import androidx.room.Room
+import com.loc.rezervasyonsistemi.data.local.SeatDao
 import com.proje.rezervasyonsistemi.data.local.AppDatabase
 import dagger.Module
 import dagger.Provides
@@ -26,6 +27,10 @@ object DatabaseModule {
             .build()
     }
 
-    // İlerleyen adımlarda SeatDao oluşturulduğunda buraya eklenecektir:
-    // @Provides @Singleton fun provideSeatDao(database: AppDatabase): SeatDao = ...
+
+    @Provides
+    @Singleton
+    fun provideSeatDao(database: AppDatabase): SeatDao {
+        return database.seatDao()
+    }
 }
